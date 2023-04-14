@@ -55,6 +55,39 @@ public class MnejadorPrincipal implements ActionListener {
                     JOptionPane.showMessageDialog(null, "No Existe,Digitelo de nuevo!!");
                 }
             }
+            this.newJFrame.limpiar();
+        }
+            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        if (e.getActionCommand().equals("Eliminar")) {
+
+            if (newJFrame.getNumero().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un numero a eliminar!!");
+            } else {
+                try {
+                    tareas.setNumero(newJFrame.getNumero());
+                    tareasl.Eliminar(Integer.parseInt(tareas.getNumero()));
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Numero a eliminar no existe!!");
+                }
+            }
+            this.newJFrame.limpiar();
+        }    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        if (e.getActionCommand().equals("Editar")) {
+
+            if (newJFrame.getNumero().isEmpty()||newJFrame.getEditar().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un numeroal que decea editar");
+            } else {
+                try {
+                      tareas.setNumero(newJFrame.getNumero());
+                       tareas.setEditar(newJFrame.getEditar());
+                    tareasl.Editar(Integer.parseInt(tareas.getNumero()),tareas.getEditar());
+                 
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "No Existe, Digitelo de nuevo!!");
+                }
+            }
+            this.newJFrame.limpiar();
         }
     }
 }

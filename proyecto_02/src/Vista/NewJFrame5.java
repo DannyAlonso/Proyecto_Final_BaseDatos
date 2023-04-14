@@ -4,43 +4,25 @@
  */
 package Vista;
 
-import Controlador.Manejador5;
+
 import Modelo.tareas0;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class NewJFrame5 extends javax.swing.JFrame {
 
     tareas0 tareas;
-    Manejador5 manejador5;
+    
    
     public NewJFrame5() {
         this.tareas = new tareas0();       
         initComponents();
-        manejador5 = new Manejador5(this);
-        this.btnAgregar.addActionListener(manejador5);
+
         this.setLocationRelativeTo(null);
         this.setTitle("Lista de tareas");
     }
 
-    public void setTarea(String tarea){
-        this.TextTarea.setText(tarea);
-     }
-    public String getTarea(){
-    return this.TextTarea.getText();
-    }
-    
-     public void setEstado(String estado){
-        this.comEstado.getSelectedItem().toString();
-     }
-    public String getEstado(){
-    return this.comEstado.getSelectedItem().toString();
-    }
-    
-     public void setPrioridad(String prioridad){
-        this.comPrioridad.getSelectedItem().toString();
-     }
-    public String getPrioridad(){
-    return this.comPrioridad.getSelectedItem().toString();
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,7 +36,7 @@ public class NewJFrame5 extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        Tabla5 = new javax.swing.JTable();
+        JTabla = new javax.swing.JTable();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
@@ -77,7 +59,7 @@ public class NewJFrame5 extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(0, 102, 102));
 
-        Tabla5.setModel(new javax.swing.table.DefaultTableModel(
+        JTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -85,7 +67,7 @@ public class NewJFrame5 extends javax.swing.JFrame {
                 "Tareas", "Estado", "Prioridad"
             }
         ));
-        jScrollPane6.setViewportView(Tabla5);
+        jScrollPane6.setViewportView(JTabla);
 
         jButton13.setText("Editar");
 
@@ -244,7 +226,13 @@ public class NewJFrame5 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
- 
+String nota = TextTarea.getText();
+String estado = comEstado.getSelectedItem().toString();
+String prioridad = comPrioridad.getSelectedItem().toString();
+tareas0 t = new tareas0(nota,estado,prioridad);
+tareas00.add(t);
+ System.out.println(tareas00);
+llenarjTable();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void comEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comEstadoActionPerformed
@@ -255,7 +243,18 @@ public class NewJFrame5 extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
+    public void llenarjTable(){
+    
+        DefaultTableModel datos = (DefaultTableModel) JTabla.getModel();
+        datos.setNumRows(0);
+        for (tareas0 tareass: tareas00){
+        Object[] fila = {tareass.getTarea(),tareass.getEstado(),tareass.getPrioridad()};
+        datos.addRow(fila);
+        
+        }
+            
+    }
+     ArrayList<tareas0> tareas00 = new ArrayList<tareas0>();
     /**
      * @param args the command line arguments
      */
@@ -292,7 +291,7 @@ public class NewJFrame5 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Tabla5;
+    private javax.swing.JTable JTabla;
     private javax.swing.JTextField TextTarea;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEstado4;

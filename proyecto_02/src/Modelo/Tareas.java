@@ -15,14 +15,19 @@ public class Tareas {
     public Tareas siguiente;
     private int valor;
     public String Ver;
+    private String numero;
+    public  String numero2;
+    public String Editar;
 
-    public Tareas(String crear, String d, String ver) {
+    public Tareas(String crear, String d,String edi) {
 
         this.Crear = crear;
         this.dato = d;
         this.siguiente = null;
         this.valor = 0;
-        this.Crear = ver;
+        this.Editar= edi;
+     
+      
 
     }//fin del constructor con parametros 
 
@@ -58,7 +63,22 @@ public class Tareas {
     public void setCrear(String crear) {
         this.Crear = crear;
     }
+    
+      public String getEditar() {
+        return Editar;
+    }
 
+    public void setEditar(String Editar) {
+        this.Editar = Editar;
+    }
+  public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+    
     public int getValor() {
         return valor;
     }
@@ -74,5 +94,7 @@ public class Tareas {
     public void setSiguiente(Tareas siguiente) {
         this.siguiente = siguiente;
     }
+ 
+ 
  
 }

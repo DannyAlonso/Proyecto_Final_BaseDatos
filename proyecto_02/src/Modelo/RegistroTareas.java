@@ -14,10 +14,10 @@ public class RegistroTareas {
     NewJFrame1 newJFrame1;
     public tareas0 inicio1;
     public tareas0 fin1;
-    public Tareas inicio;
+    private Tareas inicio;
     public Tareas fin;
     private int tamanio;
- 
+
     public RegistroTareas() {
         this.newJFrame = newJFrame;
         this.newJFrame1 = newJFrame1;
@@ -41,9 +41,8 @@ public class RegistroTareas {
             return false;
         }
     }
-    
-    
-     public boolean estaVacia1() {
+
+    public boolean estaVacia1() {
         if (inicio1 == fin1) {
             return true;
         } else {
@@ -53,82 +52,40 @@ public class RegistroTareas {
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public String crear(String tareas) {
-        if (tamanio==5) {
-      JOptionPane.showMessageDialog(null, "lista de Tareas llena ");       
-        }else{
-        inicio = new Tareas(tareas, inicio);
+        if (tamanio == 5) {
+            JOptionPane.showMessageDialog(null, "lista de Tareas llena ");
+        } else {
+            inicio = new Tareas(tareas, inicio);
 
-        if (fin == null) {
-            fin = inicio;
-            JOptionPane.showMessageDialog(null, "lista de Tareas a sido agregada ");
-        }
-        tamanio++;
-             JOptionPane.showMessageDialog(null, "lista:"+tareas);
+            if (fin == null) {
+                fin = inicio;
+                JOptionPane.showMessageDialog(null, "lista de Tareas a sido agregada ");
+            }
+            tamanio++;
+            JOptionPane.showMessageDialog(null, "lista:" + tareas);
         }
 
         return tareas;
     }
-      
-    
-    
-    
-    public String crear2(String tarea,String estados,String prioridad) {
-        
-        inicio1 = new tareas0(tarea, estados, prioridad);
-        
-        if (fin1 == null) {
-            fin1 = inicio1;
-            JOptionPane.showMessageDialog(null, "lista de Tareas a sido agregada inicio");
-                    
-        }
-        tamanio++;
-        JOptionPane.showMessageDialog(null, "Tarea: "+tarea+"\nEstado: "+estados+"\nPrioridad: "+prioridad);
-        return null;
-                
 
-    }
+
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public String listar() {
-        // Verifica si la lista contiene elementoa.
+
         if (!estaVacia()) {
-            // Crea una copia de la lista.
             Tareas aux = inicio;
-            // Posicion de los elementos de la lista.
             int i = 0;
-            // Recorre la lista hasta el final.
             while (aux != null) {
-                // Imprime en pantalla el valor del nodo.
                 JOptionPane.showMessageDialog(null, i + ".[ " + aux.dato + " ]" + " ->  ");
-                // Avanza al siguiente nodo.
                 aux = aux.getSiguiente();
-                // Incrementa el contador de la posión.
                 i++;
             }
         }
         return null;
     }
-    
-    
-     public String listar2() {
-        // Verifica si la lista contiene elementoa.
-        if (!estaVacia()) {
-            // Crea una copia de la lista.
-            tareas0 aux = inicio1;
-            // Posicion de los elementos de la lista.
-            int i = 0;
-            // Recorre la lista hasta el final.
-            while (aux != null) {
-                // Imprime en pantalla el valor del nodo.
-                JOptionPane.showMessageDialog(null, i + ".[ " + aux.dato + " ]" + " ->  ");
-                // Avanza al siguiente nodo.
-                aux = aux.getSiguiente();
-                // Incrementa el contador de la posión.
-                i++;
-            }
-        }
-        return null;
-    }
+
+
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public String ver() {
@@ -140,26 +97,24 @@ public class RegistroTareas {
     }
 
     public String getVer(int posicion) throws Exception {
-        // Verifica si la posición ingresada se encuentre en el rango
-        // >= 0 y < que el numero de elementos del la lista.
-       
+
         if (posicion >= 0 && posicion < tamanio) {
-            // Consulta si la posicion es el inicio de la lista.
+
             if (posicion == 0) {
-                // Retorna el valor del inicio de la lista.
+
                 JOptionPane.showMessageDialog(null, "La lista es de;" + inicio.dato);
                 NewJFrame1 mewjfrae = new NewJFrame1();
                 mewjfrae.setVisible(true);
                 return inicio.getVer();
             } else {
-                // Crea una copia de la lista.
+
                 Tareas aux = inicio;
-                // Recorre la lista hasta la posición ingresada.
+
                 for (int i = 0; i < posicion; i++) {
                     aux = aux.getSiguiente();
 
                 }
-                // Retorna el valor del nodo.
+
                 JOptionPane.showMessageDialog(null, "La lista es de;" + aux.dato);
 
                 switch (posicion) {
@@ -187,11 +142,57 @@ public class RegistroTareas {
                 return aux.getVer();
 
             }
-            // Crea una excepción de Posicion inexistente en la lista.
+
         } else {
             throw new Exception("Posicion inexistente en la lista.");
         }
 
+    }
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    public void Eliminar(int posicion) {
+
+        if (posicion >= 0 && posicion < tamanio) {
+            if (posicion == 0) {
+                inicio = inicio.getSiguiente();
+            } else {
+                Tareas aux = inicio;
+                for (int i = 0; i < posicion - 1; i++) {
+                    aux = aux.getSiguiente();
+                }
+                Tareas siguiente = aux.getSiguiente();
+                aux.setSiguiente(siguiente.getSiguiente());
+            }
+
+            tamanio--;
+            JOptionPane.showMessageDialog(null, "La lista a sido eliminada;");
+
+        }
+    }
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    public void Editar(int posicion, String valor) {
+      
+        if (posicion >= 0 && posicion < tamanio) {
+      
+            if (posicion == 0) {
+            
+                inicio.setEditar(valor);
+            
+            } else {
+        
+                Tareas aux = inicio;
+
+                for (int i = 0; i < posicion; i++) {
+                    aux = aux.getSiguiente();
+                }
+           
+                aux.setEditar(valor);
+         
+               
+
+            }
+        }
     }
 
 }

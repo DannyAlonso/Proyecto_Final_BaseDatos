@@ -24,11 +24,11 @@ public class tareas0 {
         this.prioridad = prioridad;
         this.valor = 0;
         this.siguiente = null;
-        this.dato = "d";
+        
     }
    public tareas0() {
     }
-    public tareas0(String d, tareas0 n) {
+    public tareas0(String crear,String d, tareas0 n) {
         dato = d;
         siguiente = n;
     }
@@ -76,6 +76,8 @@ public class tareas0 {
         this.valor = valor;
     }
 
+   
+
     public tareas0 getSiguiente() {
         return siguiente;
     }
@@ -83,5 +85,8 @@ public class tareas0 {
     public void setSiguiente(tareas0 siguiente) {
         this.siguiente = siguiente;
     }
-
+ @Override
+    public String toString() {
+        return "tareas0{" + "tarea=" + tarea + ", estado=" + estado + ", prioridad=" + prioridad + '}';
+    }
 }
